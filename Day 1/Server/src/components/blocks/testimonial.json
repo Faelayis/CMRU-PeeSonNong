@@ -1,25 +1,25 @@
 {
-  "collectionName": "components_blocks_testimonials",
-  "info": {
-    "displayName": "Testimonial"
-  },
-  "options": {},
-  "attributes": {
-    "authorName": {
-      "type": "string"
-    },
-    "quote": {
-      "type": "text"
-    },
-    "photo": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
-      "type": "media",
-      "multiple": false
-    }
-  }
+	"collectionName": "components_blocks_testimonials",
+	"info": {
+		"displayName": "Testimonial"
+	},
+	"options": {},
+	"attributes": {
+		"authorName": {
+			"type": "string"
+		},
+		"quote": {
+			"type": "text"
+		},
+		"photo": {
+			"allowedTypes": [
+				"images",
+				"files",
+				"videos",
+				"audios"
+			],
+			"type": "media",
+			"multiple": false
+		}
+	}
 }
