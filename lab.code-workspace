@@ -1,0 +1,32 @@
+{
+	"folders": [
+		{
+			"name": "📂 Root",
+			"path": ".",
+		},
+		{
+			"name": " Day 1",
+			"path": "./Day 1",
+		},
+	],
+	"extensions": {
+		"recommendations": ["esbenp.prettier-vscode"],
+	},
+	"settings": {
+		"files.exclude": {
+			"Day*": true,
+			".strapi": true,
+			".github": true,
+			".gitignore": true,
+			"**/.next": true,
+			"**/.tmp": true,
+			"**/dist": true,
+			"**/.strapi": true,
+			"**/node_modules": true,
+		},
+		"editor.tabSize": 4,
+		"editor.useTabStops": true,
+		"debug.openDebug": "neverOpen",
+		"editor.inlayHints.enabled": "on",
+	},
+}
