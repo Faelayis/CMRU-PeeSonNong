@@ -1,0 +1,35 @@
+{
+	"folders": [
+		{
+			"name": "📂 Root",
+			"path": ".",
+		},
+		{
+			"name": "Week 1",
+			"path": "./Week 1",
+		},
+		// {
+		// 	"name": "Week 2",
+		// },
+	],
+	"extensions": {
+		"recommendations": ["esbenp.prettier-vscode"],
+	},
+	"settings": {
+		"files.exclude": {
+			"Day*": true,
+			".strapi": true,
+			".github": true,
+			".gitignore": true,
+			"**/.next": true,
+			"**/.tmp": true,
+			"**/dist": true,
+			"**/.strapi": true,
+			"**/node_modules": true,
+		},
+		"editor.tabSize": 4,
+		"editor.useTabStops": true,
+		"debug.openDebug": "neverOpen",
+		"editor.inlayHints.enabled": "on",
+	},
+}

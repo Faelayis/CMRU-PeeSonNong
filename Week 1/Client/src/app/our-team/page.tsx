@@ -1,29 +1,7 @@
 import qs from "qs";
 import Image from "next/image";
 import Link from "next/link";
-
-async function getTeamMembers() {
-	const baseUrl = "http://localhost:1337";
-	const path = "/api/team-members";
-
-	const url = new URL(path, baseUrl);
-
-	url.search = qs.stringify({
-		populate: {
-			photo: {
-				fields: ["alternativeText", "name", "url"],
-			},
-		},
-	});
-
-	const res = await fetch(url);
-
-	if (!res.ok) throw new Error("Failed to fetch team members");
-
-	const data = await res.json();
-
-	return data;
-}
+import { fetchApi } from "@/app/api/featch";
 
 interface TeamMemberProps {
 	id: number;
@@ -45,11 +23,10 @@ interface TeamMemberProps {
 }
 
 function TeamMemberCard({ name, description, photo, slug }: Readonly<TeamMemberProps>) {
-	const imageUrl = `http://localhost:1337${photo.url}`;
-
+	const imageUrl = `${process.env.API_URL ?? "http://localhost:1337"}${photo.url}`;
 	return (
-		<Link href={`/team-member/${slug}`} className="bg-white rounded-lg shadow-md overflow-hidden">
-			<Image src={imageUrl} alt={photo.alternativeText || name} width={500} height={500} />
+		<Link href={`/our-team/${slug}`} className="bg-white rounded-lg shadow-md overflow-hidden">
+			<Image src={imageUrl} alt={photo.alternativeText} width={500} height={500} />
 			<div className="p-6">
 				<h3 className="text-xl font-semibold mb-2">{name}</h3>
 				<p className="text-gray-600">{description}</p>
@@ -58,8 +35,40 @@ function TeamMemberCard({ name, description, photo, slug }: Readonly<TeamMemberP
 	);
 }
 
+// async function getTeamMembers() {
+//   const populate = {
+//     photo: {
+//       fields: ["alternativeText", "name", "url"],
+//     },
+//   };
+//   const res = await fetchApi(`/api/team-members`, populate, {method: "GET"});
+//   console.log(res);
+
+//   return res;
+// }
+
+export const getTeamMembers = async () => {
+	const res = await fetchApi(
+		"/api/team-members",
+		{},
+		{
+			populate: {
+				photo: {
+					fields: ["alternativeText", "name", "url"],
+				},
+			},
+		},
+	);
+	if (res) {
+		if (res.status === 200) {
+			return res.data;
+		}
+	}
+	return res.data;
+};
+
 export default async function OurTeam() {
-	const teamMembers = await getTeamMembers();
+	const teamMembers: any = await getTeamMembers();
 
 	return (
 		<div>
