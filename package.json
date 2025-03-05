@@ -1,5 +1,4 @@
 {
-	"private": true,
 	"name": "pee-son-nong",
 	"scripts": {
 		"prettier": "prettier --write . --ignore-unknown",

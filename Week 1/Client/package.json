@@ -1,7 +1,5 @@
 {
-	"private": true,
 	"name": "pee-son-nong",
-	"version": "0.1.0",
 	"scripts": {
 		"build": "next build",
 		"dev": "next dev --turbopack",
