@@ -5,9 +5,12 @@
 			"path": ".",
 		},
 		{
-			"name": " Day 1",
-			"path": "./Day 1",
+			"name": "Week 1",
+			"path": "./Week 1",
 		},
+		// {
+		// 	"name": "Week 2",
+		// },
 	],
 	"extensions": {
 		"recommendations": ["esbenp.prettier-vscode"],
