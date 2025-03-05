@@ -1,5 +1,6 @@
 "use client";
-import { BlocksRenderer, type BlocksContent } from "@strapi/blocks-react-renderer";
+
+import { type BlocksContent, BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Image from "next/image";
 
 export interface RichTextBlock {
@@ -8,9 +9,6 @@ export interface RichTextBlock {
 	content: BlocksContent;
 }
 
-// This renderer is using Strapi's Rich Text renderer.
-// https://github.com/strapi/blocks-react-renderer
-
 export function RichTextBlock({ block }: { block: RichTextBlock }) {
 	return (
 		<div className="richtext">
@@ -18,7 +16,6 @@ export function RichTextBlock({ block }: { block: RichTextBlock }) {
 				content={block.content}
 				blocks={{
 					image: ({ image }) => {
-						console.log("image", image);
 						if (!image) return null;
 						return (
 							<div className="my-4 flex justify-center">

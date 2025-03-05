@@ -1,6 +1,7 @@
-import qs from "qs";
 import Image from "next/image";
 import Link from "next/link";
+import qs from "qs";
+
 import { fetchApi } from "@/app/api/featch";
 
 interface TeamMemberProps {
@@ -21,12 +22,16 @@ interface TeamMemberProps {
 		url: string;
 	};
 }
-
 function TeamMemberCard({ name, description, photo, slug }: Readonly<TeamMemberProps>) {
-	const imageUrl = `${process.env.API_URL ?? "http://localhost:1337"}${photo.url}`;
+	const imageUrl = photo ? `${process.env.API_URL ?? "http://localhost:1337"}${photo.url}` : null;
+
 	return (
 		<Link href={`/our-team/${slug}`} className="bg-white rounded-lg shadow-md overflow-hidden">
-			<Image src={imageUrl} alt={photo.alternativeText} width={500} height={500} />
+			{imageUrl ? (
+				<Image src={imageUrl} alt={photo.alternativeText} width={500} height={500} />
+			) : (
+				<div className="w-full h-64 bg-gray-200 flex items-center justify-center" />
+			)}
 			<div className="p-6">
 				<h3 className="text-xl font-semibold mb-2">{name}</h3>
 				<p className="text-gray-600">{description}</p>
@@ -52,10 +57,8 @@ export const getTeamMembers = async () => {
 		"/api/team-members",
 		{},
 		{
-			populate: {
-				photo: {
-					fields: ["alternativeText", "name", "url"],
-				},
+			photo: {
+				fields: ["alternativeText", "name", "url"],
 			},
 		},
 	);

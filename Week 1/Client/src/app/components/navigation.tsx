@@ -1,8 +1,7 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import Link from "next/link";
-import path from "path";
+import { usePathname } from "next/navigation";
 
 function cn(...inputs: (string | undefined | null | false)[]) {
 	return inputs.filter(Boolean).join(" ");
@@ -13,9 +12,9 @@ interface NavLinkProps {
 	children: React.ReactNode;
 }
 
-export default function NavLink({ href, children }: Readonly<NavLinkProps>) {
-	const pathname = usePathname();
-	const isActive = href === "/" ? pathname === "/" : pathname.startsWith(href);
+export default function NavigationLink({ href, children }: Readonly<NavLinkProps>) {
+	const pathname = usePathname(),
+		isActive = href === "/" ? pathname === "/" : pathname.startsWith(href);
 
 	return (
 		<li>

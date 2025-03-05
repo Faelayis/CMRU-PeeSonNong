@@ -17,7 +17,7 @@
 	},
 	"settings": {
 		"files.exclude": {
-			"Day*": true,
+			"Week*": true,
 			".strapi": true,
 			".github": true,
 			".gitignore": true,

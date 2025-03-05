@@ -2,7 +2,7 @@
 	"name": "pee-son-nong",
 	"scripts": {
 		"prettier": "prettier --write . --ignore-unknown",
-		"prettier:package-json": "bunx prettier-package-json --write /**/package.json --use-tabs false"
+		"prettier:package-json": "bunx prettier-package-json --write ./package.json --use-tabs false"
 	},
 	"devDependencies": {
 		"prettier": "3.5.1",

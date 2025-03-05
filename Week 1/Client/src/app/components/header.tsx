@@ -1,10 +1,11 @@
 import Link from "next/link";
-import NavLink from "./navigation";
+
+import NavigationLink from "@/app/components/navigation";
 
 const links = [
 	{ href: "/", label: "Home" },
 	{ href: "/our-team", label: "Our Team" },
-	{ href: "/about-us", label: "About Us" },
+	{ href: "/login", label: "Login" },
 ];
 
 export default function Header() {
@@ -15,9 +16,9 @@ export default function Header() {
 
 				<ul className="flex gap-4 c">
 					{links.map((link) => (
-						<NavLink key={link.href} href={link.href}>
+						<NavigationLink key={link.href} href={link.href}>
 							{link.label}
-						</NavLink>
+						</NavigationLink>
 					))}
 				</ul>
 			</nav>
