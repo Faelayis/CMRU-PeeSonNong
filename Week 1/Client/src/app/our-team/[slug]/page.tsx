@@ -1,5 +1,4 @@
-import qs from "qs";
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { fetchApi } from "@/app/api/featch";
 import { BlockRenderer, TeamPageBlock } from "@/app/components/blocks";
 

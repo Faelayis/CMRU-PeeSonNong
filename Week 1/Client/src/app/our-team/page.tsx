@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import qs from "qs";
 
 import { fetchApi } from "@/app/api/featch";
 
@@ -52,7 +51,7 @@ function TeamMemberCard({ name, description, photo, slug }: Readonly<TeamMemberP
 //   return res;
 // }
 
-export const getTeamMembers = async () => {
+ const getTeamMembers = async () => {
 	const res = await fetchApi(
 		"/api/team-members",
 		{},
@@ -71,6 +70,7 @@ export const getTeamMembers = async () => {
 };
 
 export default async function OurTeam() {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const teamMembers: any = await getTeamMembers();
 
 	return (

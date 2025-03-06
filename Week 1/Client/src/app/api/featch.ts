@@ -1,6 +1,8 @@
 import { cookies } from "next/headers";
 import qs from "qs";
 
+import { setAccessToken } from "./access-token";
+
 interface FetchResponse<T> {
 	data: T | null;
 	status?: number;
@@ -43,6 +45,10 @@ export const fetchApi = async <T>(
 
 		if (!response.ok) {
 			return { data: null, error: result };
+		}
+
+		if (result?.jwt) {
+			setAccessToken(result.jwt);
 		}
 
 		return {
