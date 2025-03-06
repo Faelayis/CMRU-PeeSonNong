@@ -51,7 +51,7 @@ function TeamMemberCard({ name, description, photo, slug }: Readonly<TeamMemberP
 //   return res;
 // }
 
- const getTeamMembers = async () => {
+const getTeamMembers = async () => {
 	const res = await fetchApi(
 		"/api/team-members",
 		{},

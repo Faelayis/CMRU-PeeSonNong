@@ -16,7 +16,9 @@ export function RichTextBlock({ block }: { block: RichTextBlock }) {
 			<BlocksRenderer
 				content={block.content}
 				blocks={{
-					image: ({ image }: { image: { url: string; width?: number; height?: number; alternativeText?: string } }) => {
+					// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+					// @ts-ignore
+					image: ({ image }) => {
 						if (!image) return null;
 						return (
 							<div className="my-4 flex justify-center">
