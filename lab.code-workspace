@@ -6,11 +6,12 @@
 		},
 		{
 			"name": "Week 1",
-			"path": "./Week 1",
+			"path": "./Week-1",
 		},
-		// {
-		// 	"name": "Week 2",
-		// },
+		{
+			"name": "Week 2",
+			"path": "./Week-2",
+		},
 	],
 	"extensions": {
 		"recommendations": ["esbenp.prettier-vscode"],
