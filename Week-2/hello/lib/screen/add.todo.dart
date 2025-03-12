@@ -5,7 +5,7 @@ class AddTodoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController _controller = TextEditingController();
+    final TextEditingController controller = TextEditingController();
 
     return Scaffold(
       appBar: AppBar(title: Text("Add Screen")),
@@ -14,13 +14,13 @@ class AddTodoScreen extends StatelessWidget {
         child: Column(
           children: [
             TextField(
-              controller: _controller,
+              controller: controller,
               decoration: InputDecoration(labelText: 'Enter TODO item'),
             ),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).pop(_controller.text);
+                Navigator.of(context).pop(controller.text);
               },
               child: Text('Add TODO'),
             ),
