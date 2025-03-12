@@ -1,28 +1,34 @@
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:todo_getx/models/todo/model.dart';
+import 'package:todo_getx/services/storage.dart';
 
 class TodoController extends GetxController {
   var todoList = <TodoModel>[].obs;
-  final GetStorage _box = GetStorage();
+  var dbmatch = 'todoList';
+
+  final StorageService storageService = StorageService();
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
 
-    List<dynamic> storedTodos = _box.read<List<dynamic>>('todos') ?? [];
-    todoList.value =
-        storedTodos.map((json) => TodoModel.fromJson(json)).toList();
+    var storedTodos = await storageService.readData('todo', dbmatch);
+    if (storedTodos.exists) {
+      List<dynamic> todosJson =
+          (storedTodos.data() as Map<String, dynamic>)['todo'];
+      todoList.value =
+          todosJson.map((json) => TodoModel.fromJson(json)).toList();
+    }
   }
 
-  void saveTodos() {
+  void saveTodos() async {
     List<Map<String, dynamic>> todos =
         todoList.map((todo) => todo.toJson()).toList();
-    _box.write('todos', todos);
+    await storageService.saveData('todo', dbmatch, {'todo': todos});
   }
 
   void add(String title, String subtitle) {
-    todoList.add(TodoModel(title, subtitle, false));
+    todoList.add(TodoModel(title: title, subtitle: subtitle, isDone: false));
     saveTodos();
   }
 

@@ -29,10 +29,7 @@ class AddTodoView extends StatelessWidget {
               SizedBox(height: 10),
               TextField(
                 controller: titleController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Enter title',
-                ),
+                decoration: InputDecoration(border: OutlineInputBorder()),
               ),
               SizedBox(height: 20),
               Text(
@@ -42,10 +39,7 @@ class AddTodoView extends StatelessWidget {
               SizedBox(height: 10),
               TextField(
                 controller: subtitleController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Enter details',
-                ),
+                decoration: InputDecoration(border: OutlineInputBorder()),
                 maxLines: 3,
               ),
               SizedBox(height: 30),
