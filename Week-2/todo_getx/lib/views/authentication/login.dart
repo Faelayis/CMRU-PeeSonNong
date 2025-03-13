@@ -4,8 +4,8 @@ import 'package:todo_getx/controllers/authentication.dart';
 import 'package:todo_getx/views/authentication/register.dart'; // Import the RegisterView
 
 class LoginView extends StatelessWidget {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final emailController = TextEditingController(text: "test@gmail.com");
+  final passwordController = TextEditingController(text: "123456");
 
   final AnthController authController = Get.put(AnthController());
 
@@ -33,17 +33,7 @@ class LoginView extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                if (!GetUtils.isEmail(emailController.text)) {
-                  Get.snackbar("ข้อผิดพลาด", "รูปแบบอีเมลไม่ถูกต้อง");
-                  return;
-                }
-
-                if (passwordController.text.isEmpty) {
-                  Get.snackbar("ข้อผิดพลาด", "กรุณากรอกรหัสผ่าน");
-                  return;
-                }
-
-                authController.login(
+                authController.validateAndLogin(
                   emailController.text,
                   passwordController.text,
                 );

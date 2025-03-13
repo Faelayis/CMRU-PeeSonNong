@@ -39,30 +39,10 @@ class RegisterView extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                if (!GetUtils.isEmail(emailController.text)) {
-                  Get.snackbar("ข้อผิดพลาด", "รูปแบบอีเมลไม่ถูกต้อง");
-                  return;
-                }
-
-                if (passwordController.text.length < 6) {
-                  Get.snackbar(
-                    "ข้อผิดพลาด",
-                    "รหัสผ่านต้องมีความยาวอย่างน้อย 6 ตัวอักษร",
-                  );
-                  return;
-                }
-
-                if (passwordController.text != confirmPasswordController.text) {
-                  Get.snackbar(
-                    "ข้อผิดพลาด",
-                    "รหัสผ่านและยืนยันรหัสผ่านไม่ตรงกัน",
-                  );
-                  return;
-                }
-
-                authController.register(
+                authController.validateAndRegister(
                   emailController.text,
                   passwordController.text,
+                  confirmPasswordController.text,
                 );
               },
               style: ElevatedButton.styleFrom(
