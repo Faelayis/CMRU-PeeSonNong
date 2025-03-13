@@ -37,3 +37,4 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 # firebase
 Week-2/todo_getx/android/app/google-services.json
 Week-2/todo_getx/firebase.json
+Week-2/todo_getx/firebase_options.dart
