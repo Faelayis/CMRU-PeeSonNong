@@ -15,7 +15,7 @@
 
 #### วันที่ 3
 
-- [3b8ecbb](https://github.com/Faelayis/CMRU-PeeSonNong/commit/3b8ecbb) - ปรับปรุงโค้ดและการจัดรูปแบบ
+- [3b8ecbb](https://github.com/Faelayis/CMRU-PeeSonNong/commit/3b8ecbb) - ปรับปรุงโค้ดและการจัดรูปแบบ (ที่เหลือก็ชิว)
 
 #### วันที่ 4
 
