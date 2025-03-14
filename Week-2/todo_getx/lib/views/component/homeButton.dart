@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo_getx/controllers/authentication.dart';
 import 'package:todo_getx/controllers/todo/controller.dart';
-import 'package:todo_getx/views/todo/add.dart';
 import 'package:todo_getx/views/authentication/login.dart';
 import 'package:todo_getx/views/authentication/register.dart';
+import 'package:todo_getx/views/todo/form.dart';
 
 class HomeButton extends StatelessWidget {
   final TodoController todoController;
@@ -24,7 +24,7 @@ class HomeButton extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 _buildFloatingActionButton(
-                  onPressed: () => Get.to(() => AddTodoView()),
+                  onPressed: () => Get.to(() => TodoFormPage()),
                   icon: Icons.add,
                 ),
                 SizedBox(height: 10),

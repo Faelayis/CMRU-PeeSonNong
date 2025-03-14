@@ -15,40 +15,38 @@ class TodoController extends GetxController {
     super.onInit();
 
     uid.value = authController.user.value?.uid ?? '';
+    if (uid.isNotEmpty) {
+      loadTodos();
+    }
 
     ever(authController.user, (_) async {
       uid.value = authController.user.value?.uid ?? '';
-
-      if (uid.value.isNotEmpty) {
+      if (uid.isNotEmpty) {
         await loadTodos();
       } else {
         todoList.clear();
       }
     });
-
-    if (uid.value.isNotEmpty) {
-      loadTodos();
-    }
   }
 
   Future<void> loadTodos() async {
-    var userDbMatch = uid.value;
-    var storedTodoList = await storageService.readData('todo', userDbMatch);
+    if (uid.isEmpty) return;
 
+    var storedTodoList = await storageService.readData('todo', uid.value);
     if (storedTodoList.exists) {
-      List<dynamic> todosJson =
-          (storedTodoList.data() as Map<String, dynamic>)['todo'];
+      var todosJson =
+          (storedTodoList.data() as Map<String, dynamic>)['todo']
+              as List<dynamic>;
       todoList.value =
           todosJson.map((json) => TodoModel.fromJson(json)).toList();
     }
   }
 
-  void saveTodos() async {
-    var userDbMatch = uid.value;
+  Future<void> saveTodos() async {
+    if (uid.isEmpty) return;
 
-    List<Map<String, dynamic>> todos =
-        todoList.map((todo) => todo.toJson()).toList();
-    await storageService.saveData('todo', userDbMatch, {'todo': todos});
+    var todos = todoList.map((todo) => todo.toJson()).toList();
+    await storageService.saveData('todo', uid.value, {'todo': todos});
   }
 
   void add(String title, String subtitle) {
@@ -63,8 +61,17 @@ class TodoController extends GetxController {
     saveTodos();
   }
 
+  void updateTodo(int index, String newTitle, String newSubtitle) {
+    var todo = todoList[index];
+    todo.title = newTitle;
+    todo.subtitle = newSubtitle;
+    todoList.refresh();
+    saveTodos();
+  }
+
   void toggle(int index) {
-    todoList[index].isDone = !todoList[index].isDone;
+    var todo = todoList[index];
+    todo.isDone = !todo.isDone;
     todoList.refresh();
     saveTodos();
   }
