@@ -1,0 +1,77 @@
+name: Build and Release Flutter App
+
+on:
+    workflow_dispatch:
+
+jobs:
+    build:
+        name: Build Flutter App
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Set up Flutter
+              uses: subosito/flutter-action@v2
+              with:
+                  flutter-version: "stable"
+
+            - name: Install dependencies
+              run: flutter pub get
+              working-directory: Week-2/todo_getx
+
+            - name: Build APK
+              run: flutter build apk --release
+              working-directory: Week-2/todo_getx
+              env:
+                  JAVA_HOME: /usr/lib/jvm/java-11-openjdk-amd64
+
+            - name: Build AppBundle
+              run: flutter build appbundle --release
+              working-directory: Week-2/todo_getx
+
+            - name: Build macOS App
+              if: runner.os == 'macOS'
+              run: flutter build macos --release
+              working-directory: Week-2/todo_getx
+
+            - name: Build Windows App
+              if: runner.os == 'Windows'
+              run: flutter build windows --release
+              working-directory: Week-2/todo_getx
+
+            - name: Upload Release Artifacts
+              uses: actions/upload-artifact@v3
+              with:
+                  name: flutter-build
+                  path: |
+                      Week-2/todo_getx/build/app/outputs/flutter-apk/app-release.apk
+                      Week-2/todo_getx/build/app/outputs/bundle/release/app-release.aab
+                      Week-2/todo_getx/build/macos/Build/Products/Release/*.app
+                      Week-2/todo_getx/build/windows/runner/Release/*.exe
+
+    release:
+        name: Create GitHub Release
+        needs: build
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Download Artifacts
+              uses: actions/download-artifact@v3
+              with:
+                  name: flutter-build
+
+            - name: Create Release
+              uses: ncipollo/release-action@v1
+              with:
+                  artifacts: |
+                      app-release.apk
+                      app-release.aab
+                      *.app
+                      *.exe
+                  token: ${{ secrets.GITHUB_TOKEN }}
+                  tag: ${{ github.ref_name }}
+                  name: Release ${{ github.ref_name }}
+                  body: |
+                      Automated release for version ${{ github.ref_name }}.
