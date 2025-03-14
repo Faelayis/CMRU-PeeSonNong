@@ -12,6 +12,12 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v3
 
+            - name: Set up Java
+              uses: actions/setup-java@v3
+              with:
+                  java-version: "17"
+                  distribution: "temurin"
+
             - name: Set up Flutter
               uses: subosito/flutter-action@v2
               with:
@@ -24,8 +30,6 @@ jobs:
             - name: Build APK
               run: flutter build apk --release
               working-directory: Week-2/todo_getx
-              env:
-                  JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
 
             - name: Build AppBundle
               run: flutter build appbundle --release
