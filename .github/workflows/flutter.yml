@@ -25,7 +25,7 @@ jobs:
               run: flutter build apk --release
               working-directory: Week-2/todo_getx
               env:
-                  JAVA_HOME: /usr/lib/jvm/java-11-openjdk-amd64
+                  JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
 
             - name: Build AppBundle
               run: flutter build appbundle --release
